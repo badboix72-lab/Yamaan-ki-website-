@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FAF7F5" />
+  <meta name="description" content="A little message of apology, appreciation and care — from Yamaan." />
+  
+  <!-- Open Graph Metadata -->
+  <meta property="og:title" content="YamaanloveAqsa 🤍" />
+  <meta property="og:description" content="A little message of apology, appreciation and care — from Yamaan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://YamaanloveAqsa.com/" />
+  
+  <title>YamaanloveAqsa 🤍</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤍</text></svg>" />
+  
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Continuous Interactive Floating Hearts Layer -->
+  <div id="floating-hearts-layer" class="floating-hearts-layer" aria-hidden="true"></div>
+
+  <!-- Compliment Modal / Toast Popup -->
+  <div id="compliment-modal" class="compliment-modal hidden" role="dialog" aria-modal="true" aria-labelledby="compliment-title">
+    <div class="compliment-backdrop" id="compliment-backdrop"></div>
+    <div class="compliment-card">
+      <button class="compliment-close" id="compliment-close" aria-label="Close message">×</button>
+      <div class="compliment-icon" aria-hidden="true">🤍</div>
+      <div class="compliment-label">A thought for you</div>
+      <p id="compliment-text" class="compliment-text"></p>
+      <div class="compliment-footer">
+        <span class="compliment-tip">Tap another floating heart for more ✨</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="site-header" id="navbar">
+    <nav class="nav-container" aria-label="Main Navigation">
+      <a href="#home" class="nav-logo" aria-label="Home">
+        <span class="logo-text">Yamaan <span class="heart-symbol">🤍</span> <span class="recipient-name">Aqsa</span></span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#for-you" class="nav-link">For You</a></li>
+        <li><a href="#appreciation" class="nav-link">Appreciation</a></li>
+        <li><a href="#apology" class="nav-link">I'm Sorry</a></li>
+        <li><a href="#send-hug" class="nav-link nav-btn-hug">Send a Hug 🫂</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Section 1: Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-content">
+        <div class="hero-badge reveal-fade">
+          <span class="badge-icon">🤍</span>
+          <span class="badge-text">A private message from Yamaan</span>
+        </div>
+
+        <h1 class="hero-title reveal-fade">
+          A little something I wanted you to know 🤍
+        </h1>
+
+        <p class="hero-subtitle reveal-fade">
+          Sometimes an apology isn't just about saying sorry. It's about appreciating the person who matters.
+        </p>
+
+        <!-- Interactive Name Personalization Form -->
+        <div class="name-entry-card reveal-fade">
+          <label for="name-input" class="name-label">
+            Who is reading this right now?
+          </label>
+          <form id="name-form" class="name-form" novalidate>
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="name-input"
+                class="name-input"
+                placeholder="Enter your name..."
+                autocomplete="name"
+                maxlength="50"
+              />
+              <button type="submit" id="open-btn" class="btn-primary">
+                Open this message 🤍
+              </button>
+            </div>
+            <p id="name-feedback" class="name-feedback" aria-live="polite"></p>
+          </form>
+
+          <div class="quick-chips">
+            <span class="chip-hint">Or continue as:</span>
+            <button type="button" class="name-chip" data-name="Aqsa">
+              Aqsa 🤍
+            </button>
+          </div>
+        </div>
+
+        <!-- Floating Hearts Interactive Hint -->
+        <div class="interactive-hint reveal-fade">
+          <span class="pulse-indicator">✨</span>
+          <span>Touch any floating heart drifting by to reveal a gentle thought</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Special Dedicated Message -->
+    <section id="for-you" class="special-message-section">
+      <div class="container">
+        <div class="section-tag reveal-fade">
+          <span>Personal Dedication</span>
+        </div>
+
+        <h2 class="section-heading reveal-fade">
+          For <span class="recipient-name">Aqsa</span> 🤍
+        </h2>
+
+        <div class="letter-card glass-card reveal-up">
+          <div class="letter-decor top-left" aria-hidden="true">“</div>
+          <p class="letter-body">
+            No matter how much I write, I don't think words will ever perfectly explain how important our bond is to me. Thank you for every conversation, every memory, every smile and even the moments that taught us to understand each other better. I don't want perfection—I just hope we always have honesty, respect and kindness between us. 🤍
+          </p>
+          <div class="letter-decor bottom-right" aria-hidden="true">”</div>
+
+          <div class="letter-signature">
+            <p class="signature-care">Made with lots of care 🤍</p>
+            <p class="signature-name">— Yamaan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Appreciation Section -->
+    <section id="appreciation" class="appreciation-section">
+      <div class="container">
+        <div class="section-tag reveal-fade">
+          <span>Everything About You</span>
+        </div>
+
+        <h2 class="section-heading reveal-fade">
+          There is so much to appreciate about you 🤍
+        </h2>
+
+        <p class="poetic-subheading reveal-fade">
+          “I appreciate everything that makes you you — right down to the tiniest cells that make up the person I know and care about.”
+        </p>
+
+        <div class="appreciation-grid">
+          <!-- Card 1: Personality -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">🌿</div>
+            <h3 class="card-title">Your Personality</h3>
+            <p class="card-description">
+              The balance of depth, warmth, and sincerity you carry. You don’t put on pretenses; you are simply and beautifully yourself, and that honesty is rare.
+            </p>
+          </article>
+
+          <!-- Card 2: Kindness -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">🕊️</div>
+            <h3 class="card-title">Your Kindness</h3>
+            <p class="card-description">
+              The gentle, instinctive care you show without asking for credit. The quiet way your heart thinks of others before yourself never goes unnoticed.
+            </p>
+          </article>
+
+          <!-- Card 3: Smile -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">☀️</div>
+            <h3 class="card-title">Your Radiant Smile</h3>
+            <p class="card-description">
+              The way your face lights up when something makes you truly happy. It has an effortless power to bring calmness to anyone fortunate enough to see it.
+            </p>
+          </article>
+
+          <!-- Card 4: Laugh -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">✨</div>
+            <h3 class="card-title">Your Laugh</h3>
+            <p class="card-description">
+              Genuine, contagious, and entirely uncalculated. When you laugh from the soul, it turns ordinary moments into memories that stay warm forever.
+            </p>
+          </article>
+
+          <!-- Card 5: Voice -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">🎶</div>
+            <h3 class="card-title">Your Voice</h3>
+            <p class="card-description">
+              There is a comforting cadence in the way you speak. It carries reassurance, softness, and a familiarity that feels like home in the middle of a noisy world.
+            </p>
+          </article>
+
+          <!-- Card 6: Little Habits -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">☕</div>
+            <h3 class="card-title">Your Little Habits</h3>
+            <p class="card-description">
+              The small quirks, the subconscious expressions you make when thinking, the specific ways you react to simple things—all those quiet details make you unique.
+            </p>
+          </article>
+
+          <!-- Card 7: Way of Talking -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">💬</div>
+            <h3 class="card-title">Your Way of Talking</h3>
+            <p class="card-description">
+              Whether discussing something deeply philosophical or sharing a silly everyday detail, the way you articulate your thoughts is endlessly engaging.
+            </p>
+          </article>
+
+          <!-- Card 8: Presence -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">🕯️</div>
+            <h3 class="card-title">Your Presence</h3>
+            <p class="card-description">
+              Even in silence, your presence has a grounding weight. You don't have to fill every silence to make someone feel understood and completely at ease.
+            </p>
+          </article>
+
+          <!-- Card 9: Individuality -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">🌸</div>
+            <h3 class="card-title">Your Individuality</h3>
+            <p class="card-description">
+              You aren't a copy of anyone else. Your perspectives, your taste, your values, and your spirit belong entirely to you, and I respect that profoundly.
+            </p>
+          </article>
+
+          <!-- Card 10: Imperfections -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">🤍</div>
+            <h3 class="card-title">Your Humanity & Imperfections</h3>
+            <p class="card-description">
+              I don't look for an untouchable ideal. The real, vulnerable, human person—with moments of fatigue, hesitation, and growth—is the one I care for.
+            </p>
+          </article>
+
+          <!-- Card 11: Emotional Warmth -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">🔥</div>
+            <h3 class="card-title">Your Emotional Warmth</h3>
+            <p class="card-description">
+              You make people feel safe to be themselves around you. That emotional softness in a harsh world is one of your greatest, most admirable strengths.
+            </p>
+          </article>
+
+          <!-- Card 12: Things You Don't Notice -->
+          <article class="appreciation-card glass-card reveal-up">
+            <div class="card-icon" aria-hidden="true">💫</div>
+            <h3 class="card-title">The Details You Don't Notice</h3>
+            <p class="card-description">
+              The fleeting glances, the considerate pauses before you reply, the quiet resilience you possess even when tired—I see them, and I treasure them all.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Apology Section -->
+    <section id="apology" class="apology-section">
+      <div class="container">
+        <div class="section-tag reveal-fade">
+          <span>From the Heart</span>
+        </div>
+
+        <h2 class="section-heading reveal-fade">
+          I'm Sorry 🤍
+        </h2>
+
+        <div class="apology-card glass-card reveal-up">
+          <div class="apology-intro">
+            <p class="lead-apology">
+              I'm sorry because you matter to me, not because I expect anything from you.
+            </p>
+          </div>
+
+          <div class="apology-content">
+            <p>
+              I want to be completely open and accountable. If my words, my silence, or my actions have ever caused you pain, disappointment, or feeling unheard, I am truly sorry from the bottom of my heart. There are no excuses, no deflections, and no attempts to justify what hurt you.
+            </p>
+            <p>
+              Your peace of mind and your emotional safety mean too much to me for me to ever treat our bond lightly. I recognize that apologies without growth are hollow, so my commitment is to listen better, speak with more gentleness, and understand your perspective before defending my own.
+            </p>
+            <p>
+              You do not owe me forgiveness, nor do I ask for it to ease my conscience. My only goal is to acknowledge what you felt, validate it with total respect, and let you know that our connection will always be something I protect with sincerity and care.
+            </p>
+          </div>
+
+          <div class="apology-promise">
+            <div class="promise-item">
+              <span class="promise-icon">✓</span>
+              <span>More patience and active listening</span>
+            </div>
+            <div class="promise-item">
+              <span class="promise-icon">✓</span>
+              <span>Unfiltered honesty with gentle words</span>
+            </div>
+            <div class="promise-item">
+              <span class="promise-icon">✓</span>
+              <span>Unconditional respect for your boundaries</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Send a Hug — WhatsApp -->
+    <section id="send-hug" class="hug-section">
+      <div class="container">
+        <div class="hug-card glass-card reveal-up">
+          <div class="hug-icon-bubble" aria-hidden="true">🫂</div>
+
+          <h2 class="hug-heading">
+            If words aren't enough… send a hug 🫂
+          </h2>
+
+          <p class="hug-description">
+            Sometimes silence says more, and a simple hug can bridge any distance. If your heart feels ready, send a quiet hug right back to Yamaan.
+          </p>
+
+          <button id="whatsapp-hug-btn" class="btn-whatsapp" type="button">
+            <span class="btn-icon" aria-hidden="true">💬</span>
+            <span class="btn-text">Send hugs to Yamaan 🫂</span>
+          </button>
+
+          <!-- WhatsApp Configuration / Fallback Notification -->
+          <div id="whatsapp-notice" class="whatsapp-notice hidden" role="status">
+            <p id="whatsapp-notice-text" class="notice-text"></p>
+          </div>
+
+          <div class="hug-footnote">
+            Pre-fills a gentle message: <span class="preview-badge">🫂 ❤️</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Closing Section -->
+    <section id="closing" class="closing-section">
+      <div class="container">
+        <div class="closing-card reveal-fade">
+          <div class="closing-heart" aria-hidden="true">🤍</div>
+
+          <h2 class="closing-heading">
+            Some things deserve to be said properly. 🤍
+          </h2>
+
+          <p class="closing-message">
+            “So here's mine: I'm sorry, I appreciate you, and I'm grateful for every little piece of our story.”
+          </p>
+
+          <div class="closing-signature">
+            — Yamaan 🤍
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-domain-badge">
+        <span>Registered Domain:</span>
+        <code>YamaanloveAqsa.com</code>
+      </div>
+      <p class="footer-credit">
+        Handcrafted with devotion, respect, and care by Yamaan for <span class="recipient-name">Aqsa</span> 🤍
+      </p>
+      <p class="footer-note">
+        Static web project designed for seamless deployment on GitHub Pages.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Vanilla JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

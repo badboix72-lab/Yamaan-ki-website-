@@ -1,0 +1,1169 @@
+/* ==========================================================================
+   YAMAAN LOVES AQSA 🤍
+   Design System & Styling
+   Registered Domain: YamaanloveAqsa.com
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Color Palette
+   -------------------------------------------------------------------------- */
+:root {
+  /* Elegant Base (Ivory, Off-White, Warm Neutrals) */
+  --bg-primary: #FAF7F5;
+  --bg-secondary: #FFFDFB;
+  --bg-card: rgba(255, 255, 255, 0.82);
+  --bg-card-hover: rgba(255, 255, 255, 0.94);
+  --bg-glass: rgba(255, 255, 255, 0.68);
+  --bg-glass-nav: rgba(250, 247, 245, 0.88);
+
+  /* Romantic Soft Accent Colors */
+  --blush-light: #FDF2F4;
+  --blush-medium: #F9DBE0;
+  --blush-accent: #E07A86;
+  --rose-primary: #B85B6B;
+  --rose-deep: #8E3A49;
+  --lavender-soft: #F5EEFA;
+  --lavender-accent: #BFA0DF;
+  --gold-warm: #E2BC7A;
+
+  /* Typography Colors */
+  --text-primary: #2E2528;
+  --text-secondary: #5C4F54;
+  --text-muted: #8E7D84;
+  --text-light: #FFFFFF;
+
+  /* Glassmorphism & Borders */
+  --border-glass: rgba(255, 255, 255, 0.9);
+  --border-subtle: rgba(184, 91, 107, 0.16);
+  --border-focus: #B85B6B;
+  --shadow-soft: 0 8px 32px rgba(142, 58, 73, 0.07);
+  --shadow-hover: 0 14px 40px rgba(142, 58, 73, 0.12);
+  --shadow-modal: 0 24px 60px rgba(60, 20, 30, 0.18);
+
+  /* WhatsApp Brand Color */
+  --whatsapp-green: #25D366;
+  --whatsapp-green-hover: #20BA5A;
+
+  /* Fonts */
+  --font-serif: "Cormorant Garamond", Garamond, Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Layout */
+  --max-width: 1080px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  --header-height: 72px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Global Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(253, 242, 244, 0.8) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(245, 238, 250, 0.8) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(255, 253, 251, 0.9) 0%, transparent 70%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Glassmorphism Card Style
+   -------------------------------------------------------------------------- */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-lg);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-hover);
+}
+
+/* --------------------------------------------------------------------------
+   4. Floating Hearts Layer & Interactive Animations
+   -------------------------------------------------------------------------- */
+.floating-hearts-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.floating-heart-btn {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.floating-heart-btn:hover {
+  transform: translate(-50%, -50%) scale(1.35);
+  filter: drop-shadow(0 0 10px rgba(224, 122, 134, 0.7));
+}
+
+.floating-heart-btn:active {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.floating-heart-btn svg {
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(184, 91, 107, 0.25));
+}
+
+/* Heart burst particles */
+.burst-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 100;
+  font-size: 14px;
+  animation: burstFade 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes burstFade {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Compliment Modal / Popup
+   -------------------------------------------------------------------------- */
+.compliment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.compliment-modal.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.compliment-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(46, 37, 40, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.compliment-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-modal);
+  padding: 32px 28px 24px;
+  text-align: center;
+  z-index: 2;
+  transform: scale(0.92) translateY(15px);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.compliment-modal:not(.hidden) .compliment-card {
+  transform: scale(1) translateY(0);
+}
+
+.compliment-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-primary);
+  color: var(--text-muted);
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.compliment-close:hover {
+  background: var(--blush-light);
+  color: var(--rose-primary);
+}
+
+.compliment-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+  animation: heartPulse 1.8s infinite ease-in-out;
+}
+
+.compliment-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--rose-primary);
+  margin-bottom: 12px;
+}
+
+.compliment-text {
+  font-family: var(--font-serif);
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.compliment-footer {
+  border-top: 1px solid rgba(184, 91, 107, 0.1);
+  padding-top: 12px;
+}
+
+.compliment-tip {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   6. Navigation Header
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: var(--bg-glass-nav);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(184, 91, 107, 0.12);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-header.scrolled {
+  box-shadow: 0 4px 20px rgba(184, 91, 107, 0.08);
+}
+
+.nav-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--rose-deep);
+}
+
+.nav-logo .heart-symbol {
+  margin: 0 4px;
+  font-size: 16px;
+  color: var(--rose-primary);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 24px;
+}
+
+.nav-link {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+  position: relative;
+  padding: 6px 0;
+}
+
+.nav-link:hover, .nav-link:focus-visible {
+  color: var(--rose-primary);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--rose-primary);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-btn-hug {
+  background: var(--blush-light);
+  color: var(--rose-deep) !important;
+  padding: 8px 16px !important;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--blush-medium);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.nav-btn-hug::after {
+  display: none;
+}
+
+.nav-btn-hug:hover {
+  background: var(--rose-primary);
+  color: #FFFFFF !important;
+  border-color: var(--rose-primary);
+}
+
+/* Mobile Nav Toggle */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+  height: 38px;
+  z-index: 110;
+}
+
+.hamburger-bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+   7. Typography & Tags
+   -------------------------------------------------------------------------- */
+.section-tag {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.section-tag span {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--rose-primary);
+  background: var(--blush-light);
+  border: 1px solid var(--blush-medium);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 4.5vw, 44px);
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+.poetic-subheading {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(18px, 2.5vw, 22px);
+  color: var(--rose-deep);
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 40px;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   8. Section 1: Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px 80px;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 6vw, 62px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+.hero-subtitle {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--text-secondary);
+  max-width: 580px;
+  margin: 0 auto 36px;
+  line-height: 1.65;
+}
+
+/* Name Personalization Form */
+.name-entry-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+
+.name-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+}
+
+.name-input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 18px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-subtle);
+  background: #FFFFFF;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: 15px;
+}
+
+.name-input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(184, 91, 107, 0.15);
+}
+
+.btn-primary {
+  padding: 13px 22px;
+  background: var(--rose-primary);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 14.5px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(184, 91, 107, 0.3);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--rose-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(142, 58, 73, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.name-feedback {
+  min-height: 20px;
+  font-size: 13px;
+  margin-top: 8px;
+  color: var(--rose-deep);
+  font-weight: 500;
+}
+
+.quick-chips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.chip-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.name-chip {
+  background: var(--blush-light);
+  border: 1px solid var(--blush-medium);
+  color: var(--rose-deep);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.name-chip:hover {
+  background: var(--blush-medium);
+  border-color: var(--blush-accent);
+}
+
+.interactive-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.pulse-indicator {
+  display: inline-block;
+  animation: pulseRotate 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseRotate {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   9. Section 2: Special Dedication Section
+   -------------------------------------------------------------------------- */
+.special-message-section {
+  padding: 70px 0;
+}
+
+.letter-card {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 48px 40px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-soft);
+}
+
+.letter-decor {
+  position: absolute;
+  font-family: var(--font-serif);
+  font-size: 70px;
+  line-height: 1;
+  color: rgba(184, 91, 107, 0.15);
+  pointer-events: none;
+}
+
+.letter-decor.top-left {
+  top: 16px;
+  left: 20px;
+}
+
+.letter-decor.bottom-right {
+  bottom: 16px;
+  right: 20px;
+}
+
+.letter-body {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2.7vw, 25px);
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.letter-signature {
+  text-align: center;
+  border-top: 1px solid rgba(184, 91, 107, 0.14);
+  padding-top: 20px;
+}
+
+.signature-care {
+  font-size: 14px;
+  color: var(--rose-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.signature-name {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   10. Section 3: Appreciation Section
+   -------------------------------------------------------------------------- */
+.appreciation-section {
+  padding: 70px 0;
+}
+
+.appreciation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 24px;
+}
+
+.appreciation-card {
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-icon {
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   11. Section 4: Apology Section
+   -------------------------------------------------------------------------- */
+.apology-section {
+  padding: 70px 0;
+}
+
+.apology-card {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 44px 38px;
+}
+
+.apology-intro {
+  text-align: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(184, 91, 107, 0.12);
+  padding-bottom: 20px;
+}
+
+.lead-apology {
+  font-family: var(--font-serif);
+  font-size: clamp(21px, 2.6vw, 26px);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--rose-deep);
+  line-height: 1.45;
+}
+
+.apology-content p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+  line-height: 1.75;
+}
+
+.apology-promise {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.promise-item {
+  background: var(--blush-light);
+  border: 1px solid var(--blush-medium);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.promise-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--rose-primary);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. Section 5: Send a Hug — WhatsApp
+   -------------------------------------------------------------------------- */
+.hug-section {
+  padding: 70px 0;
+}
+
+.hug-card {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 36px;
+  text-align: center;
+}
+
+.hug-icon-bubble {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  background: var(--blush-light);
+  border: 1px solid var(--blush-medium);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  box-shadow: 0 6px 18px rgba(184, 91, 107, 0.12);
+}
+
+.hug-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.hug-description {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--whatsapp-green);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn-whatsapp:hover {
+  background: var(--whatsapp-green-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+}
+
+.btn-whatsapp:active {
+  transform: translateY(1px);
+}
+
+.btn-whatsapp .btn-icon {
+  font-size: 18px;
+}
+
+.whatsapp-notice {
+  margin-top: 20px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: #FFF3CD;
+  border: 1px solid #FFEBAA;
+  color: #856404;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-notice.hidden {
+  display: none;
+}
+
+.hug-footnote {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.preview-badge {
+  display: inline-block;
+  background: rgba(184, 91, 107, 0.1);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: var(--rose-primary);
+}
+
+/* --------------------------------------------------------------------------
+   13. Section 6: Closing Section
+   -------------------------------------------------------------------------- */
+.closing-section {
+  padding: 80px 0 100px;
+  text-align: center;
+}
+
+.closing-card {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.closing-heart {
+  font-size: 40px;
+  margin-bottom: 18px;
+  display: inline-block;
+  animation: heartPulse 2.4s infinite ease-in-out;
+}
+
+.closing-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+}
+
+.closing-message {
+  font-family: var(--font-serif);
+  font-size: clamp(19px, 2.5vw, 23px);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.closing-signature {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--rose-primary);
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid rgba(184, 91, 107, 0.12);
+  background: var(--bg-secondary);
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.footer-domain-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blush-light);
+  border: 1px solid var(--blush-medium);
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.footer-domain-badge code {
+  font-weight: 700;
+  color: var(--rose-primary);
+  font-family: inherit;
+}
+
+.footer-credit {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.footer-note {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   15. Scroll Reveal Animations
+   -------------------------------------------------------------------------- */
+.reveal-fade {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal-fade.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   16. Focus Visible & Accessibility
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   17. Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    padding: 24px 20px;
+    gap: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid var(--border-subtle);
+    transform: translateY(-120%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .nav-links.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .nav-btn-hug {
+    margin-top: 8px;
+    width: 100%;
+  }
+
+  .letter-card, .apology-card, .hug-card {
+    padding: 36px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-wrapper {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+
+  .hero-section {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  .appreciation-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18. Reduced Motion Support
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-fade, .reveal-up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .closing-heart, .compliment-icon, .pulse-indicator {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "YamaanloveAqsa",
+  "description": "A heartfelt love and apology application from Yamaan to Aqsa (YamaanloveAqsa.com)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
