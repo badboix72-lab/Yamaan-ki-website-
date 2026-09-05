@@ -50,11 +50,31 @@
         <span class="logo-text">Yamaan <span class="heart-symbol">🤍</span> <span class="recipient-name">Aqsa</span></span>
       </a>
 
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
-        <span class="hamburger-bar"></span>
-        <span class="hamburger-bar"></span>
-        <span class="hamburger-bar"></span>
-      </button>
+      <div class="nav-right-actions">
+        <!-- Subtle Audio Toggle Button -->
+        <button
+          type="button"
+          id="audio-toggle-btn"
+          class="audio-toggle-btn"
+          aria-label="Play soothing lo-fi piano music"
+          title="Play soothing lo-fi piano background music"
+          aria-pressed="false"
+        >
+          <span class="audio-icon" aria-hidden="true">🎵</span>
+          <span class="audio-label">Music</span>
+          <span class="audio-bars" aria-hidden="true">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+          </span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
 
       <ul class="nav-links" id="nav-menu">
         <li><a href="#home" class="nav-link">Home</a></li>

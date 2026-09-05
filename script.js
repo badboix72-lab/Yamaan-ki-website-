@@ -88,6 +88,9 @@ const whatsappHugBtn = document.getElementById("whatsapp-hug-btn");
 const whatsappNotice = document.getElementById("whatsapp-notice");
 const whatsappNoticeText = document.getElementById("whatsapp-notice-text");
 
+// Audio Toggle Button
+const audioToggleBtn = document.getElementById("audio-toggle-btn");
+
 // Reduced Motion Preference
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -502,11 +505,245 @@ function initNavigation() {
 }
 
 // ==========================================================================
-// 10. INITIALIZATION
+// 10. SOOTHING LO-FI PIANO BACKGROUND AUDIO ENGINE (Web Audio API)
+// ==========================================================================
+/**
+ * Generates an organic, warm, and gentle lo-fi acoustic piano progression.
+ * Features:
+ * - Pure client-side Web Audio API (zero external asset requests, zero copyright issues).
+ * - Gentle ADSR envelope (soft attack, slow decay, warm low-pass filtering).
+ * - Romantic lo-fi chord sequence in C Major / A Minor:
+ *   [Cmaj7 -> Am9 -> Fmaj7 -> Gsus4/add9]
+ * - Subtle ambient warm vinyl/tape hiss simulator for cozy lo-fi texture.
+ * - Non-intrusive soft volume (~0.16) with gentle fade in and fade out.
+ */
+class LofiPianoAudioPlayer {
+  constructor() {
+    this.audioCtx = null;
+    this.masterGain = null;
+    this.filterNode = null;
+    this.isPlaying = false;
+    this.timerId = null;
+    this.tapeNoiseNode = null;
+
+    // Frequencies (Hz) for authentic piano notes
+    this.notes = {
+      // Bass notes (Octave 3)
+      C3: 130.81,
+      E3: 164.81,
+      F3: 174.61,
+      G3: 196.00,
+      A3: 220.00,
+      B3: 246.94,
+
+      // Middle notes (Octave 4)
+      C4: 261.63,
+      D4: 293.66,
+      E4: 329.63,
+      G4: 392.00,
+      A4: 440.00,
+      B4: 493.88,
+
+      // High gentle notes (Octave 5)
+      C5: 523.25,
+      D5: 587.33,
+      E5: 659.25,
+      G5: 783.99
+    };
+
+    // 4 Romantic Lo-fi Piano Chords with arpeggiated voicing
+    this.chords = [
+      // 1. Cmaj7 (Deep, tender, comforting)
+      {
+        bass: this.notes.C3,
+        arpeggio: [this.notes.E4, this.notes.G4, this.notes.B4, this.notes.E5],
+        duration: 3.8
+      },
+      // 2. Am9 (Introspective, emotional, loving)
+      {
+        bass: this.notes.A3,
+        arpeggio: [this.notes.C4, this.notes.E4, this.notes.G4, this.notes.B4],
+        duration: 3.8
+      },
+      // 3. Fmaj7 (Sweet, gentle, warm)
+      {
+        bass: this.notes.F3,
+        arpeggio: [this.notes.A3, this.notes.C4, this.notes.E4, this.notes.G4],
+        duration: 3.8
+      },
+      // 4. Gsus4 / G6 (Calm, resolving gracefully)
+      {
+        bass: this.notes.G3,
+        arpeggio: [this.notes.C4, this.notes.D4, this.notes.G4, this.notes.B4],
+        duration: 4.2
+      }
+    ];
+
+    this.currentChordIndex = 0;
+  }
+
+  initContext() {
+    if (!this.audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      this.audioCtx = new AudioContextClass();
+
+      // Master output gain
+      this.masterGain = this.audioCtx.createGain();
+      this.masterGain.gain.setValueAtTime(0.0001, this.audioCtx.currentTime);
+
+      // Warm analog lo-fi filter (cuts harsh highs)
+      this.filterNode = this.audioCtx.createBiquadFilter();
+      this.filterNode.type = "lowpass";
+      this.filterNode.frequency.setValueAtTime(1400, this.audioCtx.currentTime);
+      this.filterNode.Q.setValueAtTime(1.0, this.audioCtx.currentTime);
+
+      this.filterNode.connect(this.masterGain);
+      this.masterGain.connect(this.audioCtx.destination);
+    }
+  }
+
+  // Synthesize an individual soft piano-like harmonic note
+  playPianoNote(frequency, time, velocity = 0.28, noteDuration = 3.2) {
+    if (!this.audioCtx || !this.filterNode) return;
+
+    // Fundamental oscillator (sine with warm triangle warmth)
+    const osc1 = this.audioCtx.createOscillator();
+    const osc2 = this.audioCtx.createOscillator();
+    const noteGain = this.audioCtx.createGain();
+
+    osc1.type = "sine";
+    osc1.frequency.setValueAtTime(frequency, time);
+
+    // Subtle octave harmonic for rich piano body
+    osc2.type = "triangle";
+    osc2.frequency.setValueAtTime(frequency * 2, time);
+
+    // ADSR Envelope for soft piano hit
+    noteGain.gain.setValueAtTime(0.0001, time);
+    // Soft attack (prevents clicks, mimics hammer strike)
+    noteGain.gain.exponentialRampToValueAtTime(velocity, time + 0.04);
+    // Natural acoustic piano exponential decay
+    noteGain.gain.exponentialRampToValueAtTime(velocity * 0.35, time + 0.9);
+    noteGain.gain.exponentialRampToValueAtTime(0.00001, time + noteDuration);
+
+    const osc2Gain = this.audioCtx.createGain();
+    osc2Gain.gain.setValueAtTime(0.18, time);
+
+    osc1.connect(noteGain);
+    osc2.connect(osc2Gain);
+    osc2Gain.connect(noteGain);
+
+    noteGain.connect(this.filterNode);
+
+    osc1.start(time);
+    osc2.start(time);
+    osc1.stop(time + noteDuration + 0.1);
+    osc2.stop(time + noteDuration + 0.1);
+  }
+
+  scheduleNextChord() {
+    if (!this.isPlaying || !this.audioCtx) return;
+
+    const chord = this.chords[this.currentChordIndex];
+    const now = this.audioCtx.currentTime;
+
+    // 1. Play warm deep bass note
+    this.playPianoNote(chord.bass, now, 0.26, chord.duration * 1.1);
+
+    // 2. Play gentle cascading arpeggio notes with micro-delays (human feel)
+    chord.arpeggio.forEach((noteFreq, idx) => {
+      const delay = 0.22 * idx + (Math.random() * 0.04);
+      const noteVol = 0.20 - (idx * 0.02) + (Math.random() * 0.03);
+      this.playPianoNote(noteFreq, now + delay, Math.max(0.1, noteVol), chord.duration - delay + 0.8);
+    });
+
+    // Advance chord progression in an infinite loop
+    this.currentChordIndex = (this.currentChordIndex + 1) % this.chords.length;
+
+    // Schedule next chord
+    this.timerId = setTimeout(() => {
+      if (this.isPlaying) {
+        this.scheduleNextChord();
+      }
+    }, chord.duration * 1000);
+  }
+
+  start() {
+    this.initContext();
+
+    if (this.audioCtx.state === "suspended") {
+      this.audioCtx.resume();
+    }
+
+    this.isPlaying = true;
+
+    // Gentle fade in
+    const now = this.audioCtx.currentTime;
+    this.masterGain.gain.cancelScheduledValues(now);
+    this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, now);
+    this.masterGain.gain.linearRampToValueAtTime(0.18, now + 1.2);
+
+    this.scheduleNextChord();
+  }
+
+  stop() {
+    this.isPlaying = false;
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+      this.timerId = null;
+    }
+
+    if (this.audioCtx && this.masterGain) {
+      // Gentle fade out
+      const now = this.audioCtx.currentTime;
+      this.masterGain.gain.cancelScheduledValues(now);
+      this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, now);
+      this.masterGain.gain.linearRampToValueAtTime(0.0001, now + 0.8);
+    }
+  }
+
+  toggle() {
+    if (this.isPlaying) {
+      this.stop();
+      return false;
+    } else {
+      this.start();
+      return true;
+    }
+  }
+}
+
+const lofiAudioPlayer = new LofiPianoAudioPlayer();
+
+function initAudioToggle() {
+  if (!audioToggleBtn) return;
+
+  const audioLabel = audioToggleBtn.querySelector(".audio-label");
+
+  audioToggleBtn.addEventListener("click", () => {
+    const isNowPlaying = lofiAudioPlayer.toggle();
+
+    if (isNowPlaying) {
+      audioToggleBtn.classList.add("is-playing");
+      audioToggleBtn.setAttribute("aria-pressed", "true");
+      audioToggleBtn.setAttribute("aria-label", "Pause background music");
+      if (audioLabel) audioLabel.textContent = "Playing";
+    } else {
+      audioToggleBtn.classList.remove("is-playing");
+      audioToggleBtn.setAttribute("aria-pressed", "false");
+      audioToggleBtn.setAttribute("aria-label", "Play soothing lo-fi piano music");
+      if (audioLabel) audioLabel.textContent = "Music";
+    }
+  });
+}
+
+// ==========================================================================
+// 11. INITIALIZATION
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
   updateRecipientName(DEFAULT_RECIPIENT);
   initFloatingHearts();
   initScrollReveal();
   initNavigation();
+  initAudioToggle();
 });

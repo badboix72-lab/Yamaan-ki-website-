@@ -409,6 +409,109 @@ a {
   border-color: var(--rose-primary);
 }
 
+/* Nav Right Actions */
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Subtle Audio Toggle Button */
+.audio-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.audio-toggle-btn:hover {
+  color: var(--rose-deep);
+  border-color: var(--blush-medium);
+  background: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(184, 91, 107, 0.12);
+  transform: translateY(-1px);
+}
+
+.audio-toggle-btn.is-playing {
+  background: var(--blush-light);
+  border-color: var(--rose-primary);
+  color: var(--rose-deep);
+  box-shadow: 0 0 16px rgba(224, 122, 143, 0.25);
+}
+
+.audio-icon {
+  font-size: 14px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.audio-toggle-btn.is-playing .audio-icon {
+  transform: scale(1.15);
+}
+
+.audio-label {
+  letter-spacing: 0.01em;
+}
+
+/* Equalizer Bars Indicator */
+.audio-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 12px;
+  padding-bottom: 1px;
+}
+
+.audio-bars .bar {
+  display: block;
+  width: 2.5px;
+  height: 4px;
+  background: var(--text-muted);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.audio-toggle-btn.is-playing .audio-bars .bar {
+  background: var(--rose-primary);
+  animation: audioBarWave 1.2s ease-in-out infinite alternate;
+}
+
+.audio-toggle-btn.is-playing .audio-bars .bar-1 {
+  animation-delay: 0.1s;
+}
+
+.audio-toggle-btn.is-playing .audio-bars .bar-2 {
+  animation-delay: 0.35s;
+}
+
+.audio-toggle-btn.is-playing .audio-bars .bar-3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes audioBarWave {
+  0% {
+    height: 3px;
+  }
+  50% {
+    height: 11px;
+  }
+  100% {
+    height: 6px;
+  }
+}
+
 /* Mobile Nav Toggle */
 .nav-toggle {
   display: none;
@@ -1125,6 +1228,16 @@ a {
 }
 
 @media (max-width: 480px) {
+  .audio-toggle-btn {
+    padding: 5px 10px;
+    font-size: 12.5px;
+    gap: 5px;
+  }
+
+  .audio-bars {
+    display: none; /* Keep clean on small mobile screens */
+  }
+
   .input-wrapper {
     flex-direction: column;
   }

@@ -15,6 +15,7 @@ Intended Custom Domain: **`YamaanloveAqsa.com`**
 - **Special Message**: Exact heartfelt dedication letter with elegant typography and custom signature.
 - **Appreciation Section**: Comprehensive tribute celebrating personality, kindness, smile, voice, individuality, quirks, and emotional warmth.
 - **Sincere Apology Section**: An honest, accountable, and non-manipulative apology prioritizing respect and her peace of mind.
+- **Soothing Background Audio**: Subtle, non-intrusive toggle at the top of the page that plays a warm, soft lo-fi piano progression (Cmaj7 → Am9 → Fmaj7 → Gsus4) with soft analog filtering and animated equalizer indicator.
 - **WhatsApp Hug Option**: Pre-fills `🫂 ❤️` for direct sending to Yamaan on WhatsApp (configured for `+91 93364 35690`).
 - **Closing & Final Thought**: Poetic closing with a gentle pulsing heart.
 - **Accessibility & Motion**: Fully responsive (320px to 1920px), zero dependencies, ARIA landmarks, and `@media (prefers-reduced-motion: reduce)` support.
